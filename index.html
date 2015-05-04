@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GEO</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <script type="text/javascript" charset="utf-8">
+
+    // Wait for device API libraries to load
+    //
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    // device APIs are available
+    //
+    function onDeviceReady() {
+        navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    }
+
+    // onSuccess Geolocation
+    //
+    function onSuccess(position) {
+        var element = document.getElementById('geolocation');
+        element.innerHTML = 'Latitud: '           + position.coords.latitude              + '<br />' +
+                            'Longitud: '          + position.coords.longitude             + '<br />' +
+                            'Altitud: '           + position.coords.altitude              + '<br />' +
+                            'Precisión: '           + position.coords.accuracy              + '<br />' +
+                            'Precisión en Altitud: '  + position.coords.altitudeAccuracy      + '<br />' +
+                            'Rumbo: '            + position.coords.heading               + '<br />' +
+                            'Velocidad: '              + position.coords.speed                 + '<br />' +
+                            'Fecha y hora: '          + position.timestamp                    + '<br />';
+    }
+
+    // onError Callback receives a PositionError object
+    //
+    function onError(error) {
+        alert('codigo de error: '    + error.code    + '\n' +
+              'mensaje: ' + error.message + '\n');
+    }
+
+    </script>
+  </head>
+  <body>
+    <div data-role="page" id="inicio">
+		<h1>Ejemplo de Geolocalización</h1>
+        <p id="geolocation">Buscando ubicación...</p>
+        <a href="#" class="ui-btn ui-corner-all ui-btn-inline" data-transition="slideup">Entrar</a>
+	</div>
+  </body>
+</html>
